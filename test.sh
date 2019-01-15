@@ -1,4 +1,4 @@
 #!/bin/bash
 
-ping baidu.com
-
+baseDir=`pwd`/
+echo $baseDir
