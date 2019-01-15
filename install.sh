@@ -16,19 +16,9 @@ fi
 echo "networking test complete."
 
 # to install my dotfiles.
-## oh-my-zsh
-echo "installing oh-my-zsh..."
-if [ $isNetOK -eq 1 ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    cp ${zshDir}/lambda-mod.zsh-theme ~/.oh-my-zsh/custom/themes/
-    cp ${zshDir}/zshrc ~/.zshrc
-else
-    sh ${baseDir}/plugin/zsh/oh-my-zsh/tools/install.sh
-fi
-echo "installing oh-my-zsh complete."
-
 ## vim
 echo "installing vim plugins..."
+apt install vim -y
 if [ -d ~/.vim ]; then
     cp -R ~/.vim ~/.vim.bak
     echo "back up ~/.vim as ~/.vim.bak"
@@ -55,4 +45,16 @@ echo "installing docker complete."
 echo "installing other softwares..."
 apt install cmatrix
 echo "installing other softwares complete."
+
+## oh-my-zsh 安装完这个会切shell，所以把它放到最后安装。
+echo "installing oh-my-zsh..."
+apt install zsh -y
+if [ $isNetOK -eq 1 ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    cp ${zshDir}/lambda-mod.zsh-theme ~/.oh-my-zsh/custom/themes/
+    cp ${zshDir}/zshrc ~/.zshrc
+else
+    sh ${baseDir}/plugin/zsh/oh-my-zsh/tools/install.sh
+fi
+echo "installing oh-my-zsh complete."
 
