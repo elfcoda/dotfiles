@@ -46,14 +46,13 @@ cp ${vimDir}/solarized.vim /usr/share/vim/vimfiles/colors/      # vim themes.
 echo "installing vim plugins complete."
 
 ## others
-## 包括升级更新以及各种常用软件的安装
-## 甚至环境部署
-
-## 语言安装
-
 ## install docker
 echo "installing docker..."
 wget -qO- https://get.docker.com/ | sh
 echo "installing docker complete."
 
+## 软件安装
+echo "installing other softwares..."
+apt install cmatrix
+echo "installing other softwares complete."
 
