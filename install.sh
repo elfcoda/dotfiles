@@ -20,7 +20,7 @@ echo "networking test complete."
 echo "installing vim plugins..."
 apt install vim -y
 if [ -d ~/.vim ]; then
-    cp -R ~/.vim ~/.vim.bak
+    mv -R ~/.vim ~/.vim.bak
     echo "back up ~/.vim as ~/.vim.bak"
 fi
 cp -R ${vimDir}/vim ~/.vim
