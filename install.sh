@@ -1,5 +1,11 @@
 #!/bin/bash
 
+########################################################################################################
+##### 警告：此脚本会安装一些乱七八糟的软件和做一些奇奇怪怪的事，所以请不要在公共的机器上执行此脚本 #####
+#####                             尤其是不要放在运营环境执行！！！                                 #####
+#####                         此脚本可能只适合放在个人的玩具机器上执行！！!                        #####
+########################################################################################################
+
 # 获取目录
 baseDir=`pwd`
 vimDir=${baseDir}/plugin/vim
@@ -56,9 +62,9 @@ apt install zsh -y
 if [ $isNetOK -eq 1 ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     cp ${zshDir}/lambda-mod.zsh-theme ~/.oh-my-zsh/custom/themes/
-    cp ${zshDir}/zshrc ~/.zshrc
 else
     sh ${baseDir}/plugin/zsh/oh-my-zsh/tools/install.sh
 fi
+cp ${zshDir}/zshrc ~/.zshrc
 echo "installing oh-my-zsh complete."
 
