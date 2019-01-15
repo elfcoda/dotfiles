@@ -19,8 +19,11 @@ echo "networking test complete."
 ## vim
 echo "installing vim plugins..."
 apt install vim -y
+apt install ctags -y
+apt install cscope -y
 if [ -d ~/.vim ]; then
-    mv -R ~/.vim ~/.vim.bak
+    cp -R ~/.vim ~/.vim.bak
+    rm -rf ~/.vim
     echo "back up ~/.vim as ~/.vim.bak"
 fi
 cp -R ${vimDir}/vim ~/.vim
@@ -39,6 +42,7 @@ echo "installing vim plugins complete."
 ## install docker
 echo "installing docker..."
 wget -qO- https://get.docker.com/ | sh
+service docker stop
 echo "installing docker complete."
 
 ## 软件安装
