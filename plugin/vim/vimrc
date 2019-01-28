@@ -268,8 +268,6 @@ filetype plugin indent on
 hi Normal ctermbg=None ctermfg=darkgrey
 hi LineNr ctermfg=red ctermbg=None
 
-set foldmethod=manual
-
 " cscope
 nmap <silent> <c-y> :cs add /data/home/kalisplu/project/qd_server/cscope.out<CR>
 nmap <silent> <c-y>y :cs add /data/home/kalisplu/project/qd_server/cs_spp/cscope.out<CR>
