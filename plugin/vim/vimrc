@@ -284,3 +284,12 @@ nmap <c-c>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <c-l> :!ctags -R .<CR>
 
 
+" compile rust
+nmap <silent> <leader>cr :!rustc % && ./hello<CR>
+" compile c++
+nmap <silent> <leader>ccpp :!g++ % && ./a.out<CR>
+" python
+nmap <silent> <leader>cpy :!python %<CR>
+" python3
+nmap <silent> <leader>cpy3 :!python3 %<CR>
+
