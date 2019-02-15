@@ -291,3 +291,9 @@ nmap <silent> <leader>cpy :!python %<CR>
 " python3
 nmap <silent> <leader>cpy3 :!python3 %<CR>
 
+" sp or vsp resize
+nmap    <leader>-  :resize +10<CR>
+nmap    <leader>=  :resize -10<CR>
+nmap    <leader>,  :vertical resize +10<CR>
+nmap    <leader>.  :vertical resize -10<CR>
+
