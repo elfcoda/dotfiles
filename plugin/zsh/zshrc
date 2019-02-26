@@ -204,6 +204,11 @@ mytest(){
 findn(){
     find . -name $1
 }
+
+ts(){
+    date -d @$1
+}
+
 alias cdsrc="cd src/"
 alias cdinclude="cd include/"
 alias vbash="vim ~/.bashrc"
