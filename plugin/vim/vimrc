@@ -268,7 +268,7 @@ filetype plugin indent on
 hi Normal ctermbg=None ctermfg=darkgrey
 hi LineNr ctermfg=red ctermbg=None
 
-" cscope
+" cscope(example)
 nmap <silent> <c-y> :cs add /data/home/kalisplu/project/qd_server/cscope.out<CR>
 nmap <silent> <c-y>y :cs add /data/home/kalisplu/project/qd_server/cs_spp/cscope.out<CR>
 " 使用的地方
