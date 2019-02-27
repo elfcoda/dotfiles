@@ -44,6 +44,16 @@ mkdir -p /usr/share/vim/vimfiles/colors
 cp ${vimDir}/solarized.vim /usr/share/vim/vimfiles/colors/      # vim themes.
 echo "installing vim plugins complete."
 
+# install emacs
+echo "installing emacs..."
+add-apt-repository ppa:ubuntu-elisp/ppa
+apt update
+apt install emacs-snapshot emacs-snapshot-el -y
+echo "echo emacs complete."
+# install emacs config
+# Todo...
+
+
 ## others
 ## install docker
 echo "installing docker..."

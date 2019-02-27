@@ -212,4 +212,5 @@ ts(){
 alias cdsrc="cd src/"
 alias cdinclude="cd include/"
 alias vbash="vim ~/.bashrc"
+alias emacs="emacs -nw"
 
