@@ -21,6 +21,11 @@ if [ $pingResult -ne 0 ]; then
 fi
 echo "networking test complete."
 
+## install necessary softwares.
+apt install git -y
+apt install python-pip -y
+apt install python3-pip -y
+
 # to install my dotfiles.
 ## vim
 echo "installing vim plugins..."
