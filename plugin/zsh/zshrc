@@ -12,7 +12,7 @@ case "$TERM" in
 esac
 # export TERM=xterm-256color
 # Path to your oh-my-zsh installation.
-  export ZSH="/data/home/kalisplu/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -217,6 +217,10 @@ alias cdsrc="cd src/"
 alias cdinclude="cd include/"
 alias vbash="vim ~/.bashrc"
 alias emacs="emacs -nw"
-
+alias psemacs="ps aux | grep emacs"
+alias emacsd="emacs --daemon"
+ec(){
+    emacsclient -t $1
+}
 
 

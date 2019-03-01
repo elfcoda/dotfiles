@@ -72,7 +72,7 @@ sh ${fontsDir}/source-code-pro-install.sh
 # ./install.sh
 # cd ..
 # rm -rf fonts
-apt install fonts-powerline
+apt install fonts-powerline -y
 
 ## others
 ## install docker
@@ -83,7 +83,7 @@ echo "installing docker complete."
 
 ## 软件安装
 echo "installing other softwares..."
-apt install cmatrix
+apt install cmatrix -y
 echo "installing other softwares complete."
 
 ## oh-my-zsh 安装完这个会切shell，所以把它放到最后安装。
