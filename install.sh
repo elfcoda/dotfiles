@@ -10,6 +10,7 @@
 baseDir=`pwd`
 vimDir=${baseDir}/plugin/vim
 zshDir=${baseDir}/plugin/zsh
+fontsDir=${baseDir}/plugin/fonts
 
 # 先判断网络能否连通，能的话从网络下载，否则使用本地修改的版本
 echo "networking test..."
@@ -49,7 +50,7 @@ mkdir -p /usr/share/vim/vimfiles/colors
 cp ${vimDir}/solarized.vim /usr/share/vim/vimfiles/colors/      # vim themes.
 echo "installing vim plugins complete."
 
-# install emacs
+################## install emacs
 echo "installing emacs..."
 add-apt-repository ppa:ubuntu-elisp/ppa
 apt update
@@ -57,8 +58,21 @@ apt install emacs-snapshot emacs-snapshot-el -y
 echo "echo emacs complete."
 # install emacs config
 # restart emacs for serverl times and it will success.
+# Spacemacs will automatically install the packages it requires. If you get an error regarding package downloads then 
+# you may try to disable the HTTPS protocol by starting Emacs with: (emacs --insecure)
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-
+### fonts shell code In plugin/fonts directory.
+# install Source Code Pro.
+sh ${fontsDir}/source-code-pro-install.sh
+### install powerline fonts. 
+# https://github.com/powerline/fonts
+# On other environments, you can copy and paste these commands to your terminal. Comments are fine too.
+# git clone https://github.com/powerline/fonts.git --depth=1
+# cd fonts
+# ./install.sh
+# cd ..
+# rm -rf fonts
+apt install fonts-powerline
 
 ## others
 ## install docker
