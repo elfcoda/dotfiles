@@ -56,7 +56,8 @@ apt update
 apt install emacs-snapshot emacs-snapshot-el -y
 echo "echo emacs complete."
 # install emacs config
-# Todo...
+# restart emacs for serverl times and it will success.
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 
 ## others
