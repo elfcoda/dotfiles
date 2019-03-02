@@ -299,13 +299,6 @@ nmap <leader>. :vertical resize -10<CR>
 
 nmap gD gd<C-o>zz
 
-" history
-alias h="history"
-hg(){
-    history | grep $1
-}
-
-
 "  插件安装失败
 "  " Vundle Config.
 "  " 

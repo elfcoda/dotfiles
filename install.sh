@@ -50,7 +50,7 @@ mkdir -p /usr/share/vim/vimfiles/colors
 cp ${vimDir}/solarized.vim /usr/share/vim/vimfiles/colors/      # vim themes.
 echo "installing vim plugins complete."
 
-################## install emacs
+################## install emacs ## and i will use emacs
 echo "installing emacs..."
 add-apt-repository ppa:ubuntu-elisp/ppa
 apt update

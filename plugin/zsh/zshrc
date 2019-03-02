@@ -225,4 +225,10 @@ ec(){
     emacsclient -t $1
 }
 
+# history
+alias h="history"
+hg(){
+    history | grep $1
+}
+
 
