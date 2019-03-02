@@ -81,6 +81,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 ### install vim-airline-themes
 git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
+### install html plugin
+git clone https://github.com/mattn/emmet-vim.git ~/.vim/bundle/emmet-vim
 
 ## others
 ## install docker
