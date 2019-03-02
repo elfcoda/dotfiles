@@ -101,6 +101,8 @@ if [ $isNetOK -eq 1 ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     cp ${zshDir}/lambda-mod.zsh-theme ~/.oh-my-zsh/custom/themes/
 else
+    ### ERROR
+    echo "install oh-my-zsh failed."
     sh ${baseDir}/plugin/zsh/oh-my-zsh/tools/install.sh
 fi
 cp ${zshDir}/zshrc ~/.zshrc
