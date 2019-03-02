@@ -64,6 +64,8 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ### fonts shell code In plugin/fonts directory.
 # install Source Code Pro.
 sh ${fontsDir}/source-code-pro-install.sh
+## And then the gui mode is ok.
+
 ### install powerline fonts. 
 # https://github.com/powerline/fonts
 # On other environments, you can copy and paste these commands to your terminal. Comments are fine too.

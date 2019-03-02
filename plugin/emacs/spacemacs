@@ -306,6 +306,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   )
 
+;; My customer config of emacs.
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -313,9 +314,25 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (setq-default
-   powerline-default-separator 'box
-   evil-escape-key-sequence "kj"
+  (progn
+    ;; load path added
+    (push "/root/.emacs.d/myloadpath/" load-path)
+    (require 'spaceline-config)
+    (spaceline-spacemacs-theme)
+    ;; line number
+    (linum-mode)
+    (setq-default
+     powerline-default-separator 'box
+     evil-escape-key-sequence "kj"
+     linum-format "%4d "
+     ;; nyancat
+     ;; mode-line-format (list '(:eval (list (nyan-create))))
+     )
+    ;; line number color
+    (custom-set-faces
+     '(linum ((t (:inherit (shadow default) :foreground "purple")))))
+    ;; key binding
+    ;; ()
    )
   )
 
