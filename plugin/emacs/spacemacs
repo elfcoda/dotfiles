@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     ;; vim-powerline
      rust
      html
      haskell
@@ -315,10 +316,6 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (progn
-    ;; load path added
-    (push "/root/.emacs.d/myloadpath/" load-path)
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
     ;; line number
     (linum-mode)
     (setq-default
