@@ -75,6 +75,12 @@ sh ${fontsDir}/source-code-pro-install.sh
 # cd ..
 # rm -rf fonts
 apt install fonts-powerline -y
+### install VundleVim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+### install vim-airline
+git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
+### install vim-airline-themes
+git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
 
 ## others
 ## install docker
