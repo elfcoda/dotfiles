@@ -85,6 +85,8 @@ git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-ai
 git clone https://github.com/mattn/emmet-vim.git ~/.vim/bundle/emmet-vim
 ### install lisp plugin(slimv)
 git clone https://github.com/kovisoft/slimv.git ~/.vim/bundle/slimv
+### install rainbow parentheses
+git clone https://github.com/kien/rainbow_parentheses.vim.git ~/.vim/bundle/rainbow_parentheses
 
 ## others
 ## install docker

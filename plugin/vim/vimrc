@@ -334,7 +334,7 @@ nmap gD gd<C-o>zz
 
 " vim-airline
 " Read the README.md docs.
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#left_sep = " "
 let g:airline#extensions#tabline#left_alt_sep = "|"
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -368,4 +368,36 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_symbols.whitespace = 'Ξ'
+
+" slimv for clisp
+let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-CLISP "clisp -i ~/.vim/bundle/slimv/slime/start-swank.lisp"'
+" slimv for sbcl 
+let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp"'
+" slimv for ccl
+let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-CCL "ccl -l ~/.vim/bundle/slimv/slime/start-swank.lisp"'
+
+let g:rbpt_colorpairs = [ 
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+nmap r0 :RainbowParenthesesToggle<CR>   " uesd                                                                                                                                    
+nmap r1 :RainbowParenthesesLoadRound<CR>
+nmap r2 :RainbowParenthesesLoadSquare<CR>
+nmap r3 :RainbowParenthesesLoadBraces<CR>
+nmap r4 :RainbowParenthesesLoadChevrons<CR>
 
