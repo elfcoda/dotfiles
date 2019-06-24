@@ -98,6 +98,8 @@ echo "installing docker complete."
 ## 软件安装
 echo "installing other softwares..."
 apt install cmatrix -y
+# install translation tool
+sudo npm install fanyi -g
 echo "installing other softwares complete."
 
 ## oh-my-zsh 安装完这个会切shell，所以把它放到最后安装。
