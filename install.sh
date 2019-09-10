@@ -98,6 +98,11 @@ echo "installing docker complete."
 ## 软件安装
 echo "installing other softwares..."
 apt install cmatrix -y
+# install translation tools
+# sudo npm install fanyi -g
+sudo apt install translate-shell -y # usage: trans [Words]  .. man trans | trans -R | trans [en]:ta thanks
+# install haskell
+sudo apt install haskell-platform -y
 echo "installing other softwares complete."
 
 ## oh-my-zsh 安装完这个会切shell，所以把它放到最后安装。

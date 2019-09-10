@@ -231,4 +231,7 @@ hg(){
     history | grep $1
 }
 
+tr(){
+    trans :Zh-CN ${1}
+}
 
