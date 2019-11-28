@@ -235,3 +235,24 @@ tr(){
     trans :Zh-CN ${1}
 }
 
+export MARKPATH=$HOME/.marks
+function jump {
+    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+}
+alias j="jump"
+
+function mark {
+    mkdir -p "$MARKPATH/" ; ln -s "$(pwd)" "$MARKPATH/$1"
+}
+alias m="mark"
+
+function unmark {
+    rm -i "$MARKPATH/$1"
+}
+alias um="unmark"
+
+function marks {
+    ls -l "$MARKPATH" | awk '{if (NR != 1) { printf "%s\t->\t%s\n", $9,$11}}'
+}
+alias ms="marks"
+
