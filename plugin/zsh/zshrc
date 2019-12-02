@@ -266,6 +266,10 @@ alias c2j="trans -b zh-CN:ja"
 alias c2jv="trans -v zh-CN:ja"
 alias j2c="trans -b ja:zh-CN"
 alias j2cv="trans -v ja:zh-CN"
+alias e2j="trans -b en:ja"
+alias e2jv="trans -v en:ja"
+alias j2e="trans -b ja:en"
+alias j2ev="trans -v ja:en"
 
 
 
