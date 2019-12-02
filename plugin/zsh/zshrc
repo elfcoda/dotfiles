@@ -256,3 +256,16 @@ function marks {
 }
 alias ms="marks"
 
+
+# translate tool
+alias e2c="trans -b en:zh-CN"
+alias e2cv="trans -v en:zh-CN"
+alias c2e="trans -b zh-CN:en"
+alias c2ev="trans -v zh-CN:en"
+alias c2j="trans -b zh-CN:ja"
+alias c2jv="trans -v zh-CN:ja"
+alias j2c="trans -b ja:zh-CN"
+alias j2cv="trans -v ja:zh-CN"
+
+
+
