@@ -105,6 +105,9 @@ sudo apt install translate-shell -y # usage: trans [Words]  .. man trans | trans
 sudo apt install haskell-platform -y
 echo "installing other softwares complete."
 
+# 默认把bash切换成zsh
+echo "zsh" >> ~/.bashrc
+
 ## oh-my-zsh 安装完这个会切shell，所以把它放到最后安装。
 echo "installing oh-my-zsh..."
 apt install zsh -y
