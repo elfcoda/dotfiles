@@ -14,11 +14,18 @@ fontsDir=${baseDir}/plugin/fonts
 
 # 先判断网络能否连通，能的话从网络下载，否则使用本地修改的版本
 echo "networking test..."
-isNetOK=1
+isNetOK=0
 ping baidu.com -c 1
 pingResult=$?
-if [ $pingResult -ne 0 ]; then
-    isNetOK=0
+if [ $pingResult -eq 0 ]; then
+    isNetOK=1
+fi
+
+# 如果以后百度倒闭了，上面的测试就通不了，所以再试试Google
+ping google.com -c 1
+pingResult_g=$?
+if [ $pingResult_g -eq 0 ]; then
+    isNetOK=1
 fi
 echo "networking test complete."
 
