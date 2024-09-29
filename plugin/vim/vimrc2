@@ -1,0 +1,419 @@
+"==========================================
+" ProjectLink: https://github.com/wklken/vim-for-server
+" Author:  wklken
+" Version: 0.2
+" Email: wklken@yeah.net
+" BlogPost: http://www.wklken.me
+" Donation: http://www.wklken.me/pages/donation.html
+" ReadMe: README.md
+" Last_modify: 2015-07-07
+" Desc: simple vim config for server, without any plugins.
+"==========================================
+
+" leader
+let mapleader = ','
+let g:mapleader = ','
+
+" syntax
+syntax on
+
+" history : how many lines of history VIM has to remember
+set history=2000
+
+" filetype
+filetype on
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+
+" base
+set nocompatible                " don't bother with vi compatibility
+set autoread                    " reload files when changed on disk, i.e. via `git checkout`
+set shortmess=atI
+
+set magic                       " For regular expressions turn magic on
+set title                       " change the terminal's title
+set nobackup                    " do not keep a backup file
+
+set novisualbell                " turn off visual bell
+set noerrorbells                " don't beep
+set visualbell t_vb=            " turn off error beep/flash
+set t_vb=
+set tm=500
+
+
+" show location
+set cursorcolumn
+set cursorline
+
+
+" movement
+set scrolloff=7                 " keep 3 lines when scrolling
+
+
+" show
+set ruler                       " show the current row and column
+set number                      " show line numbers
+set nowrap
+set showcmd                     " display incomplete commands
+set showmode                    " display current modes
+set showmatch                   " jump to matches when entering parentheses
+set matchtime=2                 " tenths of a second to show the matching parenthesis
+
+
+" search
+set hlsearch                    " highlight searches
+set incsearch                   " do incremental searching, search as you type
+set ignorecase                  " ignore case when searching
+set smartcase                   " no ignorecase if Uppercase char present
+
+
+" tab
+set expandtab                   " expand tabs to spaces
+set smarttab
+set shiftround
+
+" indent
+set autoindent smartindent shiftround
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4                " insert mode tab and backspace use 4 spaces
+
+" NOT SUPPORT
+" fold
+set foldenable
+set foldmethod=indent
+set foldlevel=99
+let g:FoldMethod = 0
+map <leader>zz :call ToggleFold()<cr>
+fun! ToggleFold()
+    if g:FoldMethod == 0
+        exe "normal! zM"
+        let g:FoldMethod = 1
+    else
+        exe "normal! zR"
+        let g:FoldMethod = 0
+    endif
+endfun
+
+" encoding
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set termencoding=utf-8
+set ffs=unix,dos,mac
+set formatoptions+=m
+set formatoptions+=B
+
+" select & complete
+set selection=inclusive
+set selectmode=mouse,key
+
+set completeopt=longest,menu
+set wildmenu                           " show a navigable menu for tab completion"
+set wildmode=longest,list,full
+set wildignore=*.o,*~,*.pyc,*.class
+
+" others
+set backspace=indent,eol,start  " make that backspace key work the way it should
+set whichwrap+=<,>,h,l
+
+" if this not work ,make sure .viminfo is writable for you
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" NOT SUPPORT
+" Enable basic mouse behavior such as resizing buffers.
+" set mouse=a
+
+
+" ============================ theme and status line ============================
+
+" theme
+set background=dark
+" colorscheme desert
+
+" set mark column color
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+
+" status line
+set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+set laststatus=2   " Always show the status line - use 2 lines for the status bar
+
+
+" ============================ specific file type ===========================
+
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
+
+autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+function! AutoSetFileHead()
+    " .sh
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    " python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# encoding: utf-8")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" ============================ key map ============================
+
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+nnoremap <F2> :set nu! nu?<CR>
+nnoremap <F3> :set list! list?<CR>
+nnoremap <F4> :set wrap! wrap?<CR>
+set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
+                                "    paste mode, where you can paste mass data
+                                "    that won't be autoindented
+au InsertLeave * set nopaste
+nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+
+" kj 替换 Esc
+inoremap kj <Esc>
+
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+" Quickly save the current file
+nnoremap <leader>w :w<CR>
+
+" select all
+map <Leader>sa ggVG"
+
+" remap U to <C-r> for easier redo
+nnoremap U <C-r>
+
+" Swap implementations of ` and ' jump to markers
+" By default, ' jumps to the marked line, ` jumps to the marked line and
+" column, so swap them
+nnoremap ' `
+nnoremap ` '
+
+" switch # *
+" nnoremap # *
+" nnoremap * #
+
+"Keep search pattern at the center of the screen."
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" remove highlight
+noremap <silent><leader>/ :nohls<CR>
+
+"Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
+vnoremap < <gv
+vnoremap > >gv
+
+" y$ -> Y Make Y behave like other capitals
+map Y y$
+
+"Map ; to : and save a million keystrokes
+" ex mode commands made easy 用于快速进入命令行
+nnoremap ; :
+
+" save
+cmap w!! w !sudo tee >/dev/null %
+
+" command mode, ctrl-a to head， ctrl-e to tail
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+highlight CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=NONE guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=NONE guifg=NONE
+
+nmap <silent> <c-n> :NERDTreeToggle<CR>
+nmap <silent> <c-m> :TlistToggle<CR>
+" 在右侧窗口中显示
+let Tlist_Use_Right_Window=1
+"  
+filetype plugin indent on
+
+" 背景色
+" hi Normal ctermbg=None ctermfg=grey
+hi Normal ctermbg=None ctermfg=darkgrey
+hi LineNr ctermfg=red ctermbg=None
+
+" cscope(example)
+nmap <silent> <c-y> :cs add /data/home/kalisplu/project/qd_server/cscope.out<CR>
+nmap <silent> <c-y>y :cs add /data/home/kalisplu/project/qd_server/cs_spp/cscope.out<CR>
+" 使用的地方
+nmap <c-c>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+" 定义的地方(相当于<C-]>)
+nmap <c-c>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+" 调用本函数的函数
+nmap <c-c>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+
+" compile rust
+nmap <silent> <leader>cr :!rustc % && ./hello<CR>
+" compile c++
+nmap <silent> <leader>ccpp :!g++ % && ./a.out<CR>
+" python
+nmap <silent> <leader>cpy :!python %<CR>
+" python3
+nmap <silent> <leader>cpy3 :!python3 %<CR>
+
+" sp or vsp resize
+nmap <leader>- :resize +10<CR>
+nmap <leader>= :resize -10<CR>
+nmap <leader>, :vertical resize +10<CR>
+nmap <leader>. :vertical resize -10<CR>
+
+nmap gD gd<C-o>zz
+
+"  插件安装失败
+"  " Vundle Config.
+"  " 
+"  "
+"  " Vundle 配置开始
+"  set nocompatible        " required
+"  filetype off            " required
+"  
+"  " 启用vundle来管理vim插件
+"  set rtp+=~/.vim/bundle/Vundle.vim
+"  call vundle#begin()
+"  " call vundle#begin('~/some/path/here')
+"  " 安装插件写在这里之后
+"  " let Vundle mannges Vundle, required
+"  Plugin 'VundleVim/Vundle.vim'
+"  Plugin 'Lisper.vim'
+"  " And then add your plugin configs below.
+"  "
+"  
+"  " 安装插件写在这里之前
+"  call vundle#end()       " required
+"  filetype plugin on      " required
+"  " :PluginList
+"  " :PluginSearch
+"  " :PluginUpdate
+"  " :PluginInstall    -- :PluginSearch xml
+"  " :PluginClean      -- 把安装插件对应行删除，然后执行这个命令就可以删除插件
+"  " Vundle 配置结束
+
+
+
+" other config
+
+" vim-airline
+" Read the README.md docs.
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#left_sep = " "
+let g:airline#extensions#tabline#left_alt_sep = "|"
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_theme = 'simple'
+let g:airline_powerline_fonts = 0
+
+
+" :set fenc=utf-8
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+" helptags ${dir}
+" help airline
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" slimv for clisp
+let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-CLISP "clisp -i ~/.vim/bundle/slimv/slime/start-swank.lisp"'
+" slimv for sbcl 
+let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp"'
+" slimv for ccl
+let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-CCL "ccl -l ~/.vim/bundle/slimv/slime/start-swank.lisp"'
+
+let g:rbpt_colorpairs = [ 
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+nmap r0 :RainbowParenthesesToggle<CR>   " uesd                                                                                                                                    
+nmap r1 :RainbowParenthesesLoadRound<CR>
+nmap r2 :RainbowParenthesesLoadSquare<CR>
+nmap r3 :RainbowParenthesesLoadBraces<CR>
+nmap r4 :RainbowParenthesesLoadChevrons<CR>
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+filetype on
+" and run :PluginInstall
+
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+ 
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+nnoremap <F7>   <Esc>:w<CR>:!g++ -std=c++11 % -o /tmp/a.out && /tmp/a.out<CR>
+nnoremap <F8>   <Esc>:w<CR>:!g++ -std=c++11 %<CR>
+nnoremap <C-F7> <Esc>:w<CR>:!g++ -std=c++11 -g % -o /tmp/a.out && gdb /tmp/a.out<CR>
+
+
+
